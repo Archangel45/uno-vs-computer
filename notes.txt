@@ -1,0 +1,7 @@
+--Test version 0.1.0-alpha--
+Bugs:
+    * ValueError on typing a string on card selection
+Plans:
+    * Clean stdout messages for readability
+    * Make the reverse and skip cards work
+    * Add a turn system
