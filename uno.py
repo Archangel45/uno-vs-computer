@@ -137,7 +137,10 @@ def main():
 
         while repeat_process:
             print("Number of cards in deck:", len(my_deck))
-            selected_card = int(input("Select card (0 to draw, -1 to check hand): "))
+            try:
+            	selected_card = int(input("Select card (0 to draw, -1 to check hand): "))
+            except ValueError:
+            	continue # Ignore the error and continue to loop.
 
             if selected_card <= len(my_hand) and selected_card >= 1:
                 play_card(my_hand, selected_card-1, discard_pile)
