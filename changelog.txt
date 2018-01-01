@@ -1,0 +1,21 @@
+--Test version 0.1.0-alpha2--
+Fixes:
+	* Fixed input bug that when typing a string, it crashes
+Additions:
+	* Added a turn system
+	* Added an AI mechanism
+	* Added a possibility to end a turn
+Changes:
+	* You can only draw 1 card, not into infinity
+Bugs:
+	* Wildcards, draws, skips don't still work and are still buggy
+	* Some text may have typos
+	* (Maybe a bug) stdout seems cluttered
+	* You still cant win in this game :P (Though you can exit by doing ctrl+c)
+--Test version 0.1.0-alpha--
+Bugs:
+    * ValueError on typing a string on card selection
+Plans:
+    * Clean stdout messages for readability
+    * Make the reverse and skip cards work
+    * Add a turn system
