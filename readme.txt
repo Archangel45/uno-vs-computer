@@ -13,6 +13,8 @@ The only thing required to run this program is Python 3 (not 2). If you haven't 
 
 After you got Python 3 on your computer, you can get Git [here.](https://git-scm.com/) or by clicking `Clone or download` on green button and then click `Download ZIP`
 
+**Note**: In the future I will put the source code versions under releases.
+
 ## How to install
 
 ### Git
