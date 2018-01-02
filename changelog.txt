@@ -12,6 +12,7 @@ Bugs:
 	* Some text may have typos
 	* (Maybe a bug) stdout seems cluttered
 	* You still cant win in this game :P (Though you can exit by doing ctrl+c)
+
 --Test version 0.1.0-alpha--
 Bugs:
     * ValueError on typing a string on card selection
