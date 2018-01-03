@@ -106,9 +106,21 @@ automatically draw 2 cards for you.\n")
 		hand += draw_card(deck, 2)
 		print("The news cards are", new_2_cards + "\n")
 
+def is_winner(player_name, hand):
+	"notifies if the player is \"UNO!\" or they have won."
+
+	if len(hand) == 1:
+		print(player_name + ": UNO!")
+		return False
+		
+	elif len(hand) == 0:
+		return True
+
 def ai(bot_name, hand, deck, discard_pile):
 	"AI implementation for computers."
 
+	print(bot_name + "'s total cards:", len(hand))
+	
 	if not discard_pile: # If no cards in discard pile.
 
 		# Get the card number and the card itself.
@@ -156,7 +168,7 @@ def ai(bot_name, hand, deck, discard_pile):
 				print(bot_name + "'s turn has ended\n")
 			else: # If it doesn't match, end turn.
 				print(bot_name + "'s turn has ended\n")
-				
+
 def main():
 	"""\
 	This is the main function of the program.
@@ -254,6 +266,11 @@ def main():
 						continue
 			else:
 				ai(player, curr_player_hand, my_deck, discard_pile)
+			
+			if is_winner(player, curr_player_hand):
+				print(player, "has won the game!")
+				game_over = True # Stop the loop
+				break
 				
 if __name__ == "__main__":
 	main()
