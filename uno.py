@@ -219,8 +219,6 @@ def main():
 				
 				if beginning:
 					print("Drop a card to the discard pile to start.")
-				elif discard_pile == 0: # If there is no discard pile (during the game, deck can run out.)
-					print("Since the discard pile has ran out, you can put any card in there!")
 				else:
 					print("Pick the right card to drop to the discard pile.")
 
