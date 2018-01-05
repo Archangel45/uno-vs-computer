@@ -106,6 +106,18 @@ automatically draw 2 cards for you.\n")
 		hand += draw_card(deck, 2)
 		print("The news cards are", new_2_cards + "\n")
 
+def refill_deck(deck, discard_pile):
+	"Refill deck from the discard pile if it runs out."
+	
+	if deck: # Don't do anything.
+		return
+	else:
+		# Get an exact copy of the list and shuffle it.
+		deck += random.sample(discard_pile.copy(), len(discard_pile))
+
+		# Take away the cards since we shuffled and put it into the deck.
+		discard_pile.clear() 
+
 def is_winner(player_name, hand):
 	"notifies if the player is \"UNO!\" or they have won."
 
@@ -194,6 +206,9 @@ def main():
 	while not game_over:
 
 		for player in players_names:
+
+			refill_deck(my_deck, discard_pile)
+
 			curr_player_hand = players_hands[player] # Current hand in the game
 			
 			# Inform the user on who's turn is it
@@ -204,7 +219,6 @@ def main():
 				
 				if beginning:
 					print("Drop a card to the discard pile to start.")
-
 				else:
 					print("Pick the right card to drop to the discard pile.")
 
