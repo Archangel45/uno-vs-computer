@@ -1,3 +1,8 @@
+==Test version 0.1.0-alpha3--
+Additions:
+	* Added a refilling card system
+Bugs:
+	* Refilling message doesn't work
 --Test version 0.1.0-alpha2--
 Fixes:
 	* Fixed input bug that when typing a string, it crashes
