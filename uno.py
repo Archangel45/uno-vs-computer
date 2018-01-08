@@ -108,15 +108,23 @@ automatically draw 2 cards for you.\n")
 
 def refill_deck(deck, discard_pile):
 	"Refill deck from the discard pile if it runs out."
-	
+
 	if deck: # Don't do anything.
 		return
 	else:
-		# Get an exact copy of the list and shuffle it.
-		deck += random.sample(discard_pile.copy(), len(discard_pile))
+		print("No more cards on the drawing pile.")
+		print("Getting discard pile to refill deck pile.")
 
+		# Get an exact copy of the list and shuffle it.
+
+		print("Transferring cards to the deck.")
+		print("Shuffling cards.")
+
+		deck += random.sample(discard_pile.copy(), len(discard_pile))
 		# Take away the cards since we shuffled and put it into the deck.
-		discard_pile.clear() 
+		discard_pile.clear()
+
+		print("Refilling was successful.")
 
 def is_winner(player_name, hand):
 	"notifies if the player is \"UNO!\" or they have won."
