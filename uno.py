@@ -93,7 +93,7 @@ def do_action(hand, deck, discard_pile):
 	top_discard_card = discard_pile[-1]
 
 	if top_discard_card == "wild-draw-4":
-		print("\nThe draw 4 wildcard has been played. The game will automatically draw 4 cards for you.\n")
+		print("\nThe draw 4 wildcard has been played. The game will automatically draw 4 cards for you.")
 		new_4_cards = ' '.join(deck[0:4])
 		hand += draw_card(deck, 4)
 		print("The new cards are:", new_4_cards + "\n")
@@ -101,14 +101,14 @@ def do_action(hand, deck, discard_pile):
 	elif top_discard_card.endswith("draw-2"):
 		top_discard_card_color = top_discard_card.split("-")[0]
 		print("\nThe draw 2 card from the color", top_discard_card_color, "has been played. The game will \
-automatically draw 2 cards for you.\n")
+automatically draw 2 cards for you.")
 		new_2_cards = ' '.join(deck[0:2])
 		hand += draw_card(deck, 2)
-		print("The news cards are", new_2_cards + "\n")
+		print("The new cards are", new_2_cards + "\n")
 
 def refill_deck(deck, discard_pile):
 	"Refill deck from the discard pile if it runs out."
-	
+
 	if deck: # Don't do anything.
 		return
 	else:
@@ -116,7 +116,7 @@ def refill_deck(deck, discard_pile):
 		deck += random.sample(discard_pile.copy(), len(discard_pile))
 
 		# Take away the cards since we shuffled and put it into the deck.
-		discard_pile.clear() 
+		discard_pile.clear()
 
 def is_winner(player_name, hand):
 	"notifies if the player is \"UNO!\" or they have won."
@@ -124,7 +124,7 @@ def is_winner(player_name, hand):
 	if len(hand) == 1:
 		print(player_name + ": UNO!")
 		return False
-		
+
 	elif len(hand) == 0:
 		return True
 
@@ -132,54 +132,46 @@ def ai(bot_name, hand, deck, discard_pile):
 	"AI implementation for computers."
 
 	print(bot_name + "'s total cards:", len(hand))
-	
+
 	if not discard_pile: # If no cards in discard pile.
 
 		# Get the card number and the card itself.
 		picked_card_number = random.randint(0, len(hand)-1)
 		picked_card = hand[picked_card_number]
-		
-		print(bot_name, "drops a", picked_card + "\n")
+
+		print(bot_name, "drops a", picked_card)
 
 		play_card(hand, picked_card_number, discard_pile)
 		do_action(hand, deck, discard_pile)
-
-		print(bot_name, "'s turn has ended\n")
 
 	else:
 		# A list containing a list: 1st index is the card name and the 2nd one is the index of the hand's.
 
 		valid_cards = []
-		
+
 		for card in enumerate(hand):
 			if card_compare(card[1], discard_pile[-1]):
 				valid_cards.append([card[1], card[0]])
-				
+
 		if valid_cards:
 			# PIck a random card number then get the card where the index is located.
 			picked_card_number = random.randint(0, len(valid_cards)-1)
 			picked_card = valid_cards[picked_card_number][0]
 
-			print(bot_name, "drops a", picked_card + "\n")
+			print(bot_name, "drops a", picked_card)
 
 			play_card(hand, valid_cards[picked_card_number][1], discard_pile)
 			do_action(hand, deck, discard_pile)
 
-			print(bot_name + "'s turn has ended\n")
-			
-		else: 
+		else:
 			print(bot_name, "drew a card")
 			hand += draw_card(deck, 1)
 
 			if card_compare(hand[-1], discard_pile[-1]): # If the drawn card compares with the top card of the discard pile.
-				print(bot_name, "drops a", hand[-1] + "\n")
+				print(bot_name, "drops a", hand[-1])
 
 				play_card(hand, len(hand)-1, discard_pile)
 				do_action(hand, deck, discard_pile)
-
-				print(bot_name + "'s turn has ended\n")
-			else: # If it doesn't match, end turn.
-				print(bot_name + "'s turn has ended\n")
 
 def main():
 	"""\
@@ -193,16 +185,16 @@ def main():
 	}
 
 	players_hands["Computer"] = []
-	
+
 	players_names = list(players_hands.keys()) 
 	discard_pile = []
-	
+
 	for player in players_hands.keys():
 		players_hands[player] = draw_card(my_deck, 7)
 
 	beginning = True # If the game has just started
 	game_over = False
-	
+
 	while not game_over:
 
 		for player in players_names:
@@ -210,13 +202,13 @@ def main():
 			refill_deck(my_deck, discard_pile)
 
 			curr_player_hand = players_hands[player] # Current hand in the game
-			
+
 			# Inform the user on who's turn is it
 			print("It is", player + "'s", "turn\n")
 
 			if player == "User":
 				draw_limit = 1 # How many draws you can have.
-				
+
 				if beginning:
 					print("Drop a card to the discard pile to start.")
 				else:
@@ -233,7 +225,7 @@ def main():
 
 				while repeat_process:
 					print("Number of cards in deck:", len(my_deck))
-				
+
 					try:
 						selected_card = int(input("Select card (0 to draw, -1 to check hand and -2 to end turn): "))
 
@@ -242,12 +234,10 @@ def main():
 
 					if selected_card <= len(curr_player_hand) and selected_card >= 1:
 						if not discard_pile or card_compare(curr_player_hand[selected_card-1], discard_pile[-1]):
-						
+
 							play_card(curr_player_hand, selected_card-1, discard_pile)
 							do_action(curr_player_hand, my_deck, discard_pile) # Do an action
 
-							print(player + "'s turn has ended.\n")
-							
 							repeat_process = False
 						else:
 							print("Wrong card, try again\n")
@@ -260,31 +250,32 @@ def main():
 							continue
 						else:
 							print("You can't draw anymore until your next turn!\n")
-					
+
 					elif selected_card == -1:
 						print("It is", player + "'s turn")
-						
+
 						if discard_pile: # Show this to stdout if there's at least 1 card
 							print("Current play:", discard_pile[-1])
 
 						for card in enumerate(curr_player_hand, start=1):
 							print(str(card[0]) + ":", card[1])
-													
+
 						continue
 
 					elif selected_card == -2:
-						print("\n" + player + "'s turn has ended\n")
 						repeat_process = False
 					else:
 						print("\nPlease pick a number that is shown at the screen.\n")
 						continue
 			else:
 				ai(player, curr_player_hand, my_deck, discard_pile)
-			
+
+			print("\n" + player + "'s turn has ended\n")
+
 			if is_winner(player, curr_player_hand):
 				print(player, "has won the game!")
 				game_over = True # Stop the loop
 				break
-				
+
 if __name__ == "__main__":
 	main()
